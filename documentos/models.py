@@ -1,15 +1,17 @@
-from email.policy import default
-from hashlib import blake2b
 from django.db import models
 
 # Create your models here.
 class Usuarios(models.Model):
-    dni = models.IntegerField()
     nombres = models.CharField(max_length=40)
     apellidos = models.CharField(max_length=40)
-    correo = models.CharField(max_length=60)
-    contra = models.CharField(max_length=40)
-    telefono = models.CharField(max_length=15)
+    correo = models.CharField(max_length=60, unique=True)
+    contra = models.CharField(max_length=40, unique=True)
+    usuario = models.CharField(max_length=40, null=True, blank=True, unique=True)
+    pais = models.CharField(max_length=60, null=True, blank=True)
+    ciudad = models.CharField(max_length=100, null=True, blank=True)
+    masculino = models.BooleanField(null=True, blank=True, default=False)
+    femenino = models.BooleanField(null=True, blank=True, default=False)
+    personalizado = models.BooleanField(null=True, blank=True, default=False)
 
     def __str__(self) -> str:
         return self.nombres, self.apellidos
