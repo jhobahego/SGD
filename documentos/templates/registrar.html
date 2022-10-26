@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{error}}
+    {{form.as_p}}
+    <button>Registrate</button>
+</form>
+{% endblock %}
